@@ -153,17 +153,27 @@ public interface ShaderManager {
          * @return all line.
          */
         public @NotNull List<String> lines() {
+            return lines(fileName);
+        }
+
+        /**
+         * Reads a shader template, creating its editable copy when necessary.
+         *
+         * @param resourceName bundled template and corresponding file name
+         * @return all shader lines
+         */
+        public @NotNull List<String> lines(@NotNull String resourceName) {
             var bootstrap = BetterHudAPI.inst().bootstrap();
             var dataFolder = bootstrap.dataFolder();
             var shaderLocation = new File(dataFolder, "shaders");
             if (!shaderLocation.exists() && !shaderLocation.mkdirs()) {
                 bootstrap.logger().warn("Unable to create folder BetterHud/shaders.");
             }
-            var dataFile = new File(shaderLocation, fileName);
+            var dataFile = new File(shaderLocation, resourceName);
             var lines = new ArrayList<String>();
             if (!dataFile.exists()) {
                 try (
-                        var resourceStream = Objects.requireNonNull(bootstrap.resource(fileName), "Unknown resource: " + fileName);
+                        var resourceStream = Objects.requireNonNull(bootstrap.resource(resourceName), "Unknown resource: " + resourceName);
                         var fileStream = new FileOutputStream(dataFile);
                         var bufferedFileStream = new BufferedOutputStream(fileStream)
                 ) {

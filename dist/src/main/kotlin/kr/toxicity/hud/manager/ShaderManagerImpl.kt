@@ -171,9 +171,9 @@ object ShaderManagerImpl : BetterHudManager, ShaderManager {
     }
 
     private fun loadShaders(overlay: PackOverlay): List<Pair<String, ByteArray>> {
-        constants["SHADER_VERSION"] = overlay.ordinal.toString()
+        constants["SHADER_VERSION"] = overlay.shaderVersion.toString()
         val shaders = ShaderType.entries.map {
-            it to it.lines()
+            it to it.lines(overlay.shaderTemplate(it.fileName))
         }
         return shaders.flatMap { (key, args) ->
             val tagSupplier = (tagSupplierMap[key] ?: EMPTY_SUPPLIER).get()
