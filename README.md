@@ -13,6 +13,8 @@ Welcome to BetterHud!
 [![CodeFactor](https://www.codefactor.io/repository/github/toxicity188/betterhud/badge/master?style=for-the-badge)](https://www.codefactor.io/repository/github/toxicity188/betterhud/overview/master)
 
 </div>
+### Patch Early Error from original Plugin
+## https://github.com/toxicity188/BetterHud
 
 ### Multiplatform server-side HUD implementation of Minecraft
 This project implements a server-side HUD.
